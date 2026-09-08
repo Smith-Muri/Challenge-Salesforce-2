@@ -6,7 +6,7 @@ public with sharing class CaseDispatchTriggerHandler {
         }
 
         if (!dispatchIds.isEmpty()) {
-            System.enqueueJob(new CaseDispatchCalloutQueueable(dispatchIds));
+            Database.executeBatch(new CaseDispatchCalloutQueueable(dispatchIds), CaseDispatchCalloutQueueable.BATCH_SIZE);
         }
     }
 }
